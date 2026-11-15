@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dem_check"
+description = "Code to evaluate ice-sheet DEMs against imagery"
+keywords = [
+    "REMA",
+    "DEM",
+    "Landsat",
+    "shape from shading",
+    "altimetry",
+]
+authors = [
+    {name = "Ben Smith"},
+]
+license = {file = "LICENSE"}
+readme = "README.md"
+version = "0.1.0"
+
+requires-python = ">=3.9"
+dependencies = [
+    "altimetryFit @ git+https://github.com/SmithB/altimetryFit.git",
+    "h5py",
+    "matplotlib",
+    "numba",
+    "numpy",
+    "pandas",
+    "pointAdvection @ git+https://github.com/SmithB/pointAdvection.git",
+    "pointCollection @ git+https://github.com/SmithB/pointCollection.git",
+    "pyproj",
+    "requests",
+    "scipy>=1.10.1",
+    "shapely",
+]
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+
+[project.urls]
+Repository = "https://github.com/SmithB/dem_check"
+Issues = "https://github.com/SmithB/dem_check/issues"
+
+[project.optional-dependencies]
+# GDAL (osgeo) is required, but is best installed with conda (conda install -c conda-forge gdal)
+all = ["gdal"]
+dev = ["flake8", "pytest>=4.6"]
+
+[tool.setuptools]
+packages = ["ldcheck"]
+script-files = ["scripts/get_pgc_2res_ldcheck.sh"]
